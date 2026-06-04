@@ -25,34 +25,36 @@ body{
   width:100%;
   max-width:430px;
   min-height:100vh;
-  padding:18px;
+  padding:16px;
   display:flex;
   flex-direction:column;
 }
 
 .header{
   text-align:center;
-  margin-bottom:14px;
+  margin-bottom:10px;
 }
 
 .header h1{
-  font-size:24px;
+  font-size:21px;
   line-height:1.2;
   color:#facc15;
+  text-transform:uppercase;
 }
 
 .header p{
-  font-size:16px;
-  margin-top:6px;
+  font-size:15px;
+  margin-top:5px;
   color:#dbeafe;
+  font-weight:bold;
 }
 
 .card{
   background:white;
   color:#111827;
-  border-radius:22px;
-  padding:22px;
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  border-radius:24px;
+  padding:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.38);
   flex:1;
   display:flex;
   flex-direction:column;
@@ -60,28 +62,32 @@ body{
 }
 
 .start-title{
-  font-size:31px;
+  font-size:28px;
   font-weight:900;
   text-align:center;
   color:#1e3a8a;
   line-height:1.18;
+  text-transform:uppercase;
 }
 
 .start-sub{
   text-align:center;
   font-size:20px;
-  margin:22px 0;
+  margin:20px 0;
   color:#111827;
   font-weight:bold;
+  line-height:1.35;
 }
 
 .info{
   background:#dbeafe;
-  padding:14px;
-  border-radius:16px;
+  padding:15px;
+  border-radius:18px;
   font-size:18px;
   text-align:center;
   margin-bottom:18px;
+  line-height:1.45;
+  font-weight:bold;
 }
 
 button{
@@ -99,19 +105,26 @@ button{
   width:100%;
   font-size:24px;
   padding:18px;
+  box-shadow:0 6px 0 #1e40af;
+}
+
+.start-btn:active{
+  transform:translateY(3px);
+  box-shadow:0 3px 0 #1e40af;
 }
 
 .topbar{
   display:none;
-  margin-bottom:12px;
+  margin-bottom:10px;
 }
 
 .status{
   display:flex;
   justify-content:space-between;
-  font-size:15px;
+  font-size:14px;
   font-weight:bold;
   margin-bottom:8px;
+  gap:6px;
 }
 
 .progress{
@@ -132,7 +145,7 @@ button{
   font-size:18px;
   font-weight:900;
   color:#2563eb;
-  margin-bottom:14px;
+  margin-bottom:12px;
   text-align:center;
 }
 
@@ -141,7 +154,7 @@ button{
   line-height:1.25;
   font-weight:900;
   text-align:center;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 
 .option{
@@ -149,9 +162,10 @@ button{
   background:#eff6ff;
   color:#111827;
   border:3px solid #bfdbfe;
-  margin:8px 0;
+  margin:7px 0;
   text-align:left;
-  font-size:21px;
+  font-size:20px;
+  line-height:1.25;
 }
 
 .option.correct{
@@ -172,22 +186,22 @@ button{
 
 .feedback{
   text-align:center;
-  font-size:22px;
+  font-size:21px;
   font-weight:900;
-  margin-top:14px;
-  min-height:32px;
+  margin-top:12px;
+  min-height:30px;
 }
 
 .nav{
   display:none;
   gap:8px;
-  margin-top:14px;
+  margin-top:12px;
 }
 
 .nav button{
   flex:1;
-  font-size:16px;
-  padding:13px 6px;
+  font-size:15px;
+  padding:12px 4px;
 }
 
 .prev{background:#64748b;color:white;}
@@ -199,13 +213,13 @@ button{
 }
 
 .final h2{
-  font-size:34px;
+  font-size:32px;
   color:#16a34a;
-  margin-bottom:18px;
+  margin-bottom:16px;
 }
 
 .score{
-  font-size:25px;
+  font-size:24px;
   font-weight:900;
   line-height:1.6;
 }
@@ -214,8 +228,23 @@ button{
   text-align:center;
   color:#dbeafe;
   font-size:13px;
-  margin-top:12px;
+  margin-top:10px;
   font-weight:bold;
+}
+
+.small-note{
+  font-size:15px;
+  color:#334155;
+  text-align:center;
+  margin-top:14px;
+  font-weight:bold;
+}
+
+@media(max-height:700px){
+  .question{font-size:21px;}
+  .option{font-size:18px;padding:12px;}
+  .card{padding:16px;}
+  .header h1{font-size:18px;}
 }
 </style>
 </head>
@@ -224,7 +253,7 @@ button{
 <div class="app">
 
   <div class="header">
-    <h1>📚 COMEÇAR A GOSTAR DE CONTABILIDADE</h1>
+    <h1>📚 PARA COMEÇAR A GOSTAR DE CONTABILIDADE</h1>
     <p>Quiz Premium para Iniciantes</p>
   </div>
 
@@ -260,54 +289,54 @@ const questions = [
 {q:"O Patrimônio Líquido é calculado pela fórmula:",o:["Ativo + Passivo","Passivo − Ativo","Ativo − Passivo","Receita − Despesa"],a:2},
 {q:"Quando a empresa recebe dinheiro de um cliente à vista, aumenta:",o:["Caixa","Fornecedores","Salários a Pagar","Empréstimos"],a:0},
 {q:"A conta Clientes representa:",o:["Uma obrigação","Um direito a receber","Uma despesa","Uma receita"],a:1},
-{q:"Qual das contas abaixo pertence ao Passivo?",o:["Caixa","Bancos","Estoques","Impostos a Recolher"],a:3},
+{q:"Qual das contas abaixo pertence ao grupo do Passivo?",o:["Caixa","Bancos","Estoques","Impostos a Recolher"],a:3},
 {q:"A compra de mercadorias à vista provoca:",o:["Aumento do Caixa","Diminuição do Estoque","Aumento do Estoque e diminuição do Caixa","Aumento do Passivo"],a:2},
 {q:"Qual das contas abaixo é considerada um bem?",o:["Clientes","Fornecedores","Veículos","Empréstimos a Pagar"],a:2},
-{q:"Ativo de R$ 100.000 e Passivo de R$ 40.000. O Patrimônio Líquido será:",o:["R$ 60.000","R$ 140.000","R$ 40.000","R$ 100.000"],a:0},
+{q:"Uma empresa possui Ativo de R$ 100.000 e Passivo de R$ 40.000. O Patrimônio Líquido será:",o:["R$ 60.000","R$ 140.000","R$ 40.000","R$ 100.000"],a:0},
 
-{q:"Bancos Conta Movimento é classificada como:",o:["Passivo","Receita","Ativo","Despesa"],a:2},
+{q:"A conta Bancos Conta Movimento é classificada como:",o:["Passivo","Receita","Ativo","Despesa"],a:2},
 {q:"Quando a empresa paga uma dívida em dinheiro, ocorre:",o:["Aumento do Caixa","Redução do Caixa e redução da obrigação","Aumento do Passivo","Aumento do Patrimônio Líquido"],a:1},
-{q:"Qual conta representa um direito da empresa?",o:["Fornecedores","Salários a Pagar","Clientes","Impostos a Recolher"],a:2},
-{q:"Um veículo comprado para uso da empresa é registrado no:",o:["Ativo","Passivo","Patrimônio Líquido","Resultado"],a:0},
-{q:"A conta Fornecedores surge quando a empresa:",o:["Vende mercadorias","Compra mercadorias a prazo","Recebe empréstimo","Recebe de clientes"],a:1},
-{q:"Qual item é uma obrigação?",o:["Estoques","Caixa","Empréstimos a Pagar","Clientes"],a:2},
-{q:"A empresa recebeu R$ 5.000 de venda à vista. Qual conta aumenta?",o:["Fornecedores","Caixa","Salários a Pagar","Capital Social"],a:1},
-{q:"O conjunto de bens, direitos e obrigações é denominado:",o:["Receita","Resultado","Patrimônio","Capital"],a:2},
-{q:"Bens de R$ 40.000 e direitos de R$ 20.000. O Ativo é:",o:["R$ 15.000","R$ 45.000","R$ 60.000","R$ 75.000"],a:2},
-{q:"A equação patrimonial básica é:",o:["Ativo = Passivo + Patrimônio Líquido","Passivo = Ativo + Receita","Receita = Despesa + Ativo","PL = Receita + Despesa"],a:0},
+{q:"Qual das contas abaixo representa um direito da empresa?",o:["Fornecedores","Salários a Pagar","Clientes","Impostos a Recolher"],a:2},
+{q:"Uma empresa comprou um veículo para uso nas atividades. O veículo é registrado no:",o:["Ativo","Passivo","Patrimônio Líquido","Resultado"],a:0},
+{q:"A conta Fornecedores normalmente surge quando a empresa:",o:["Vende mercadorias","Compra mercadorias a prazo","Recebe empréstimo","Recebe de clientes"],a:1},
+{q:"Qual dos itens abaixo é uma obrigação?",o:["Estoques","Caixa","Empréstimos a Pagar","Clientes"],a:2},
+{q:"A empresa recebeu R$ 5.000 de um cliente referente a uma venda à vista. Qual conta aumenta?",o:["Fornecedores","Caixa","Salários a Pagar","Capital Social"],a:1},
+{q:"O conjunto de bens, direitos e obrigações de uma entidade é denominado:",o:["Receita","Resultado","Patrimônio","Capital"],a:2},
+{q:"Uma empresa possui Bens de R$ 40.000 e Direitos de R$ 20.000. O valor do Ativo é:",o:["R$ 15.000","R$ 45.000","R$ 60.000","R$ 75.000"],a:2},
+{q:"A equação patrimonial básica é:",o:["Ativo = Passivo + Patrimônio Líquido","Passivo = Ativo + Receita","Receita = Despesa + Ativo","Patrimônio Líquido = Receita + Despesa"],a:0},
 
-{q:"A conta Caixa é classificada como:",o:["Receita","Despesa","Ativo","Passivo"],a:2},
-{q:"Quando a empresa compra mercadorias à vista, ocorre:",o:["Aumento do Caixa","Diminuição do Estoque","Aumento do Estoque e diminuição do Caixa","Aumento do PL"],a:2},
-{q:"Qual conta representa um bem?",o:["Clientes","Veículos","Fornecedores","Empréstimos a Pagar"],a:1},
-{q:"Uma dívida com fornecedores fica no:",o:["Ativo","Patrimônio Líquido","Passivo","Resultado"],a:2},
-{q:"Ao receber empréstimo bancário em dinheiro:",o:["Aumenta Caixa e Passivo","Diminui Caixa e aumenta Passivo","Aumenta Caixa e diminui Passivo","Aumenta PL"],a:0},
-{q:"Qual conta é um direito?",o:["Clientes","Salários a Pagar","Fornecedores","Empréstimos a Pagar"],a:0},
-{q:"Ativo de R$ 90.000 e Passivo de R$ 35.000. O PL será:",o:["R$ 55.000","R$ 90.000","R$ 35.000","R$ 125.000"],a:0},
-{q:"Qual conta pertence ao Ativo?",o:["Capital Social","Fornecedores","Bancos Conta Movimento","Salários a Pagar"],a:2},
-{q:"Ao pagar fornecedores em dinheiro, ocorre:",o:["Diminui Caixa e Passivo","Aumenta Caixa e diminui Passivo","Diminui Caixa e aumenta Passivo","Aumenta Caixa e Passivo"],a:0},
-{q:"Bens de R$ 50.000 e direitos de R$ 30.000. O Ativo é:",o:["R$ 20.000","R$ 50.000","R$ 30.000","R$ 80.000"],a:3},
+{q:"Uma empresa possui R$ 8.000 em caixa. A conta Caixa é classificada como:",o:["Receita","Despesa","Ativo","Passivo"],a:2},
+{q:"Quando a empresa compra mercadorias à vista, ocorre:",o:["Aumento do Caixa","Diminuição do Estoque","Aumento do Estoque e diminuição do Caixa","Aumento do Patrimônio Líquido"],a:2},
+{q:"Qual das contas abaixo representa um bem?",o:["Clientes","Veículos","Fornecedores","Empréstimos a Pagar"],a:1},
+{q:"Uma dívida com fornecedores deve ser classificada no:",o:["Ativo","Patrimônio Líquido","Passivo","Resultado"],a:2},
+{q:"A empresa recebeu um empréstimo bancário em dinheiro. O que acontece?",o:["Aumenta o Caixa e aumenta o Passivo","Diminui o Caixa e aumenta o Passivo","Aumenta o Caixa e diminui o Passivo","Aumenta o Patrimônio Líquido"],a:0},
+{q:"Qual das contas abaixo é um direito?",o:["Clientes","Salários a Pagar","Fornecedores","Empréstimos a Pagar"],a:0},
+{q:"Uma empresa possui Ativo de R$ 90.000 e Passivo de R$ 35.000. O Patrimônio Líquido será:",o:["R$ 55.000","R$ 90.000","R$ 35.000","R$ 125.000"],a:0},
+{q:"Qual das contas abaixo pertence ao Ativo?",o:["Capital Social","Fornecedores","Bancos Conta Movimento","Salários a Pagar"],a:2},
+{q:"Ao pagar uma dívida com fornecedores em dinheiro, ocorre:",o:["Diminuição do Caixa e diminuição do Passivo","Aumento do Caixa e diminuição do Passivo","Diminuição do Caixa e aumento do Passivo","Aumento do Caixa e aumento do Passivo"],a:0},
+{q:"Uma empresa possui Bens de R$ 50.000 e Direitos de R$ 30.000. O valor total do Ativo é:",o:["R$ 20.000","R$ 50.000","R$ 30.000","R$ 80.000"],a:3},
 
 {q:"A conta Estoques é classificada como:",o:["Passivo","Ativo","Receita","Despesa"],a:1},
-{q:"Na venda à vista, com recebimento imediato, aumenta:",o:["Fornecedores","Salários a Pagar","Caixa","Empréstimos"],a:2},
-{q:"Qual conta representa uma obrigação?",o:["Caixa","Clientes","Estoques","Impostos a Recolher"],a:3},
-{q:"Ativo de R$ 120.000 e Passivo de R$ 50.000. O PL será:",o:["R$ 170.000","R$ 70.000","R$ 50.000","R$ 120.000"],a:1},
-{q:"Qual item é considerado bem?",o:["Fornecedores","Clientes","Veículos","Salários a Pagar"],a:2},
-{q:"Ao receber de cliente uma dívida antiga em dinheiro, aumenta:",o:["Caixa","Fornecedores","Empréstimos","Impostos"],a:0},
-{q:"Salários a Pagar pertence ao:",o:["Ativo","Passivo","Patrimônio Líquido","Resultado"],a:1},
-{q:"A soma dos bens e direitos corresponde ao:",o:["Patrimônio Líquido","Passivo","Capital Social","Ativo"],a:3},
-{q:"Computador comprado para uso administrativo é registrado no:",o:["Ativo","Passivo","Receita","Patrimônio Líquido"],a:0},
-{q:"Bens de R$ 60.000, direitos de R$ 15.000 e obrigações de R$ 25.000. O PL será:",o:["R$ 25.000","R$ 50.000","R$ 75.000","R$ 100.000"],a:1},
+{q:"Quando a empresa vende uma mercadoria à vista e recebe o dinheiro imediatamente, aumenta:",o:["Fornecedores","Salários a Pagar","Caixa","Empréstimos a Pagar"],a:2},
+{q:"Qual das contas abaixo representa uma obrigação da empresa?",o:["Caixa","Clientes","Estoques","Impostos a Recolher"],a:3},
+{q:"Uma empresa possui Ativo de R$ 120.000 e Passivo de R$ 50.000. O Patrimônio Líquido será:",o:["R$ 170.000","R$ 70.000","R$ 50.000","R$ 120.000"],a:1},
+{q:"Qual dos itens abaixo é considerado um bem?",o:["Fornecedores","Clientes","Veículos","Salários a Pagar"],a:2},
+{q:"Ao receber de um cliente uma dívida antiga em dinheiro, ocorre:",o:["Aumento do Caixa","Aumento dos Fornecedores","Aumento dos Empréstimos","Aumento dos Impostos"],a:0},
+{q:"A conta Salários a Pagar pertence ao:",o:["Ativo","Passivo","Patrimônio Líquido","Resultado"],a:1},
+{q:"O valor obtido pela soma dos bens e direitos corresponde ao:",o:["Patrimônio Líquido","Passivo","Capital Social","Ativo"],a:3},
+{q:"Uma empresa comprou um computador para uso administrativo e pagou à vista. O computador será registrado no:",o:["Ativo","Passivo","Receita","Patrimônio Líquido"],a:0},
+{q:"Uma empresa possui Bens de R$ 60.000, Direitos de R$ 15.000 e Obrigações de R$ 25.000. O Patrimônio Líquido será:",o:["R$ 25.000","R$ 50.000","R$ 75.000","R$ 100.000"],a:1},
 
 {q:"A conta Clientes representa:",o:["Uma obrigação","Um bem","Um direito","Uma despesa"],a:2},
-{q:"Compra de mercadorias a prazo gera normalmente:",o:["Caixa","Fornecedores","Bancos","Capital Social"],a:1},
-{q:"Qual conta pertence ao Ativo?",o:["Fornecedores","Salários a Pagar","Estoques","Empréstimos a Pagar"],a:2},
-{q:"Ativo de R$ 150.000 e Passivo de R$ 90.000. O PL será:",o:["R$ 60.000","R$ 90.000","R$ 150.000","R$ 240.000"],a:0},
-{q:"Qual conta representa uma dívida?",o:["Caixa","Clientes","Veículos","Fornecedores"],a:3},
-{q:"Ao receber empréstimo bancário em dinheiro, a empresa:",o:["Aumenta Caixa e Passivo","Diminui Caixa e aumenta Passivo","Aumenta Caixa e diminui Passivo","Aumenta apenas o PL"],a:0},
-{q:"O conjunto de obrigações da empresa é chamado de:",o:["Ativo","Patrimônio Líquido","Passivo","Receita"],a:2},
-{q:"Qual conta é considerada um bem?",o:["Estoques","Fornecedores","Impostos a Recolher","Empréstimos a Pagar"],a:0},
-{q:"Bens de R$ 90.000 e direitos de R$ 20.000. O Ativo será:",o:["R$ 20.000","R$ 70.000","R$ 90.000","R$ 110.000"],a:3},
-{q:"Ativo de R$ 200.000 e Passivo de R$ 80.000. O PL corresponde a:",o:["R$ 120.000","R$ 280.000","R$ 80.000","R$ 200.000"],a:0}
+{q:"Quando a empresa compra mercadorias a prazo, surge normalmente a conta:",o:["Caixa","Fornecedores","Bancos","Capital Social"],a:1},
+{q:"Qual das contas abaixo pertence ao Ativo?",o:["Fornecedores","Salários a Pagar","Estoques","Empréstimos a Pagar"],a:2},
+{q:"Uma empresa possui Ativo de R$ 150.000 e Passivo de R$ 90.000. O Patrimônio Líquido será:",o:["R$ 60.000","R$ 90.000","R$ 150.000","R$ 240.000"],a:0},
+{q:"Qual das contas abaixo representa uma dívida?",o:["Caixa","Clientes","Veículos","Fornecedores"],a:3},
+{q:"Ao receber um empréstimo bancário em dinheiro, a empresa:",o:["Aumenta o Caixa e aumenta o Passivo","Diminui o Caixa e aumenta o Passivo","Aumenta o Caixa e diminui o Passivo","Aumenta apenas o Patrimônio Líquido"],a:0},
+{q:"O conjunto de obrigações da empresa é denominado:",o:["Ativo","Patrimônio Líquido","Passivo","Receita"],a:2},
+{q:"Qual das contas abaixo é considerada um bem?",o:["Estoques","Fornecedores","Impostos a Recolher","Empréstimos a Pagar"],a:0},
+{q:"Uma empresa possui Bens de R$ 90.000 e Direitos de R$ 20.000. O valor do Ativo será:",o:["R$ 20.000","R$ 70.000","R$ 90.000","R$ 110.000"],a:3},
+{q:"Uma empresa possui Ativo de R$ 200.000 e Passivo de R$ 80.000. O Patrimônio Líquido corresponde a:",o:["R$ 120.000","R$ 280.000","R$ 80.000","R$ 200.000"],a:0}
 ];
 
 let current = 0;
@@ -319,16 +348,18 @@ const topbar = document.getElementById("topbar");
 const nav = document.getElementById("nav");
 
 function save(){
-  localStorage.setItem("quizContabilidade", JSON.stringify({current,answers,started}));
+  localStorage.setItem("quizGostarContabilidade", JSON.stringify({current,answers,started}));
 }
 
 function load(){
-  const data = localStorage.getItem("quizContabilidade");
+  const data = localStorage.getItem("quizGostarContabilidade");
   if(data){
-    const obj = JSON.parse(data);
-    current = obj.current || 0;
-    answers = obj.answers || Array(questions.length).fill(null);
-    started = obj.started || false;
+    try{
+      const obj = JSON.parse(data);
+      current = obj.current || 0;
+      answers = obj.answers || Array(questions.length).fill(null);
+      started = obj.started || false;
+    }catch(e){}
   }
 }
 
@@ -342,15 +373,18 @@ function renderStart(){
   topbar.style.display="none";
   nav.style.display="none";
   screen.innerHTML = `
-    <div class="start-title">📚 COMEÇAR A GOSTAR DE CONTABILIDADE</div>
-    <div class="start-sub">Aprenda o básico acertando uma questão de cada vez.</div>
+    <div class="start-title">📚 PARA COMEÇAR A GOSTAR DE CONTABILIDADE</div>
+    <div class="start-sub">
+      Você não precisa decorar tudo.<br><br>
+      Você só precisa entender os conceitos básicos.
+    </div>
     <div class="info">
-      ✅ 50 questões básicas<br>
-      ✅ Uma questão por tela<br>
-      ✅ Letras grandes<br>
-      ✅ Ideal para iniciantes
+      🎯 Nível Iniciante<br>
+      ✅ 50 questões<br>
+            🏆 Desafio para perder o medo da Contabilidade
     </div>
     <button class="start-btn" onclick="startQuiz()">▶ COMEÇAR</button>
+    <div class="small-note">Curso de Contabilidade Professor Moreira</div>
   `;
 }
 
@@ -379,8 +413,8 @@ function renderQuestion(){
     </button>`;
   });
 
-  html += `<div class="feedback" id="feedback">
-    ${answered===null ? "" : answered===q.a ? "✅ Muito bem!" : "❌ Atenção! Veja a correta."}
+  html += `<div class="feedback">
+    ${answered===null ? "Toque em uma alternativa." : answered===q.a ? "✅ Muito bem! Você está aprendendo." : "❌ Atenção! A correta ficou marcada em verde."}
   </div>`;
 
   screen.innerHTML = html;
@@ -454,13 +488,15 @@ function renderFinal(){
     <div class="final">
       <h2>🏆 PARABÉNS!</h2>
       <div class="score">
+        Você concluiu o desafio:<br>
+        📚 PARA COMEÇAR A GOSTAR DE CONTABILIDADE<br><br>
         ✅ Acertos: ${hits}<br>
         ❌ Erros: ${errors}<br>
         📊 Aproveitamento: ${percent}%
       </div>
       <br>
       <div class="info">
-        Você acabou de dar mais um passo para dominar a Contabilidade.
+        Agora você já conhece os conceitos básicos que servem de base para toda a Contabilidade.
       </div>
       <button class="start-btn" onclick="restartQuiz()">🔄 Jogar Novamente</button>
     </div>
