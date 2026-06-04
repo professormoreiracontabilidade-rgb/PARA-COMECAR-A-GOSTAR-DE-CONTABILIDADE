@@ -113,6 +113,32 @@ button{
   box-shadow:0 3px 0 #1e40af;
 }
 
+.whatsapp-btn{
+  background:#22c55e;
+  color:white;
+  width:100%;
+  font-size:22px;
+  padding:16px;
+  margin-top:12px;
+  box-shadow:0 6px 0 #15803d;
+}
+
+.whatsapp-btn:active{
+  transform:translateY(3px);
+  box-shadow:0 3px 0 #15803d;
+}
+
+.name-input{
+  width:100%;
+  padding:15px;
+  border-radius:16px;
+  border:3px solid #93c5fd;
+  font-size:20px;
+  margin:14px 0;
+  font-weight:bold;
+  text-align:center;
+}
+
 .topbar{
   display:none;
   margin-bottom:10px;
@@ -364,6 +390,10 @@ function load(){
 }
 
 function startQuiz(){
+  const nameField = document.getElementById("studentName");
+  if(nameField && nameField.value.trim() !== ""){
+    localStorage.setItem("nomeAlunoContabilidade", nameField.value.trim());
+  }
   started = true;
   save();
   renderQuestion();
@@ -381,8 +411,11 @@ function renderStart(){
     <div class="info">
       🎯 Nível Iniciante<br>
       ✅ 50 questões<br>
-            🏆 Desafio para perder o medo da Contabilidade
+      ✅ Só pare quando terminar todas<br>
+      ✅ Repita até acertar todas<br>
+      🏆 Desafio para perder o medo da Contabilidade
     </div>
+    <input class="name-input" id="studentName" placeholder="Digite seu nome">
     <button class="start-btn" onclick="startQuiz()">▶ COMEÇAR</button>
     <div class="small-note">Curso de Contabilidade Professor Moreira</div>
   `;
@@ -415,7 +448,8 @@ function renderQuestion(){
 
   html += `<div class="feedback">
     ${answered===null ? "Toque em uma alternativa." : answered===q.a ? "✅ Muito bem! Você está aprendendo." : "❌ Atenção! A correta ficou marcada em verde."}
-  </div>`;
+  </div>
+  <button class="whatsapp-btn" onclick="sendWhatsApp()">📲 Enviar progresso ao professor</button>`;
 
   screen.innerHTML = html;
   save();
@@ -498,9 +532,53 @@ function renderFinal(){
       <div class="info">
         Agora você já conhece os conceitos básicos que servem de base para toda a Contabilidade.
       </div>
+      <button class="whatsapp-btn" onclick="sendWhatsApp()">📲 Enviar resultado ao professor</button>
       <button class="start-btn" onclick="restartQuiz()">🔄 Jogar Novamente</button>
     </div>
   `;
+}
+
+function sendWhatsApp(){
+  const professorPhone = "5561985323574";
+  const nomeAluno = localStorage.getItem("nomeAlunoContabilidade") || "Aluno não informado";
+
+  let hits = 0;
+  let errors = 0;
+  let answeredCount = 0;
+
+  let detalhes = "";
+
+  answers.forEach((ans,i)=>{
+    if(ans !== null){
+      answeredCount++;
+      const correta = questions[i].a;
+      const letraAluno = String.fromCharCode(65+ans);
+      const letraCorreta = String.fromCharCode(65+correta);
+
+      if(ans === correta){
+        hits++;
+      }else{
+        errors++;
+      }
+
+      detalhes += `Q${i+1}: marcou ${letraAluno} | correta ${letraCorreta} | ${ans === correta ? "ACERTOU" : "ERROU"}%0A`;
+    }
+  });
+
+  const percent = answeredCount > 0 ? Math.round((hits/answeredCount)*100) : 0;
+
+  const mensagem =
+`📚 PARA COMEÇAR A GOSTAR DE CONTABILIDADE%0A%0A` +
+`👤 Aluno: ${encodeURIComponent(nomeAluno)}%0A` +
+`📌 Progresso: ${answeredCount}/50 questões%0A` +
+`✅ Acertos: ${hits}%0A` +
+`❌ Erros: ${errors}%0A` +
+`📊 Aproveitamento: ${percent}%25%0A` +
+`📍 Última questão acessada: ${current+1}%0A%0A` +
+`📝 Respostas:%0A${detalhes}%0A` +
+`Curso de Contabilidade Professor Moreira`;
+
+  window.open(`https://wa.me/${professorPhone}?text=${mensagem}`, "_blank");
 }
 
 load();
